@@ -11,8 +11,8 @@ urlpatterns = [
 ]
 
 # Personalización del Panel de Administración
-admin.site.site_header = 'Administración de GRUPO COINP'
-admin.site.site_title = 'Panel de GRUPO COINP'
+admin.site.site_header = 'Administración de IME RAM'
+admin.site.site_title = 'Panel de IME RAM'
 admin.site.index_title = 'Gestión de la Tienda Virtual'
 
 if settings.DEBUG:

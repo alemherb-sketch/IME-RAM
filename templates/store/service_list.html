@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Servicios - GRUPO COINP{% endblock %}
+{% block title %}Servicios - IME RAM{% endblock %}
 
 {% block content %}
 
@@ -11,7 +11,7 @@
         <h1>Servicios de <span class="highlight">Reparación</span> y Mantenimiento</h1>
         <p>Soluciones electromecánicas con garantía de calidad, seguridad y respaldo técnico especializado.</p>
         <div class="hero-actions">
-            <a href="mailto:contacto@grupocoinp.com" class="btn btn-primary btn-lg btn-pulse">Solicitar Presupuesto</a>
+            <a href="mailto:contacto@imeram.com" class="btn btn-primary btn-lg btn-pulse">Solicitar Presupuesto</a>
             <a href="{% url 'store:product_list' %}" class="btn btn-outline-white btn-lg">Ver Productos</a>
         </div>
     </div>
@@ -41,7 +41,7 @@
                 {% endif %}
                 <div class="card-footer">
                     <span></span>
-                    <a href="mailto:contacto@grupocoinp.com?subject=Consulta sobre: {{ service.name }}" class="btn btn-blue btn-sm">Contactar →</a>
+                    <a href="mailto:contacto@imeram.com?subject=Consulta sobre: {{ service.name }}" class="btn btn-blue btn-sm">Contactar →</a>
                 </div>
             </div>
         </div>

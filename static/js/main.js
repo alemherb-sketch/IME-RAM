@@ -1,4 +1,4 @@
-// GRUPO COINP - Main JS
+// IME RAM - Main JS
 
 document.addEventListener('DOMContentLoaded', () => {
 
