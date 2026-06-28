@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#1b539a">
+    <title>{% block title %}GRUPO COINP - Ferretería Eléctrica{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta name="description" content="GRUPO COINP — Venta de productos de ferretería eléctrica y servicios de mantenimiento electromecánico.">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+    <header id="main-header">
+        <nav>
+            <a href="{% url 'store:index' %}" class="logo-text">
+                <div class="logo-icon">⚡</div>
+                GRUPO <span>COINP</span>
+            </a>
+
+            <button class="nav-toggle" aria-label="Menú" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+            <ul class="nav-links">
+                <li><a href="{% url 'store:index' %}">Inicio</a></li>
+                <li><a href="{% url 'store:product_list' %}">Productos</a></li>
+                <li><a href="{% url 'store:service_list' %}">Servicios</a></li>
+                <li>
+                    <a href="{% url 'orders:cart_detail' %}" class="nav-cart">
+                        🛒 Carrito
+                    </a>
+                </li>
+                <li><a href="{% url 'dashboard:home' %}" style="color: var(--text-muted); font-size: 0.88rem;">⚙️ Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="{% url 'store:index' %}" class="logo-text">
+                    <div class="logo-icon">⚡</div>
+                    GRUPO <span>COINP</span>
+                </a>
+                <p>Especialistas en materiales eléctricos y servicios de mantenimiento electromecánico. Calidad garantizada para tu proyecto.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Tienda</h4>
+                <ul>
+                    <li><a href="{% url 'store:product_list' %}">→ Catálogo de Productos</a></li>
+                    <li><a href="{% url 'store:service_list' %}">→ Servicios</a></li>
+                    <li><a href="{% url 'orders:cart_detail' %}">→ Carrito</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Empresa</h4>
+                <ul>
+                    <li><a href="#">→ Sobre Nosotros</a></li>
+                    <li><a href="#">→ Garantías</a></li>
+                    <li><a href="#">→ Envíos</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="mailto:contacto@grupocoinp.com">→ contacto@grupocoinp.com</a></li>
+                    <li><a href="#">→ Lima, Perú</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 GRUPO COINP — IMERAM FERRELECTRIC. Todos los derechos reservados.</p>
+            <span class="footer-badge">⚡ Ferretería Eléctrica</span>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,50 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block page_title %}Banners{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+    <h1 style="color: var(--text-dark); margin: 0; font-size: 1.5rem;">Gestionar Banners Principales</h1>
+</div>
+
+<div class="banner-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+    <!-- Subir nuevo -->
+    <div class="form-card">
+        <h3 style="margin-top: 0; margin-bottom: 1.2rem; color: var(--text-dark);">Agregar Nuevo Banner</h3>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="file" name="image" accept="image/*" required class="form-control">
+                <small style="color: var(--text-muted); display: block; margin-top: 0.5rem;">Se recomienda una imagen ancha (ej. 1920×600 px).</small>
+            </div>
+            <button type="submit" class="btn btn-dashboard-primary" style="width: 100%;">Agregar al Carrusel</button>
+        </form>
+    </div>
+
+    <!-- Lista de banners -->
+    <div class="form-card">
+        <h3 style="margin-top: 0; margin-bottom: 1.2rem; color: var(--text-dark);">Banners Activos</h3>
+        {% if banners %}
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                {% for b in banners %}
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: var(--border-radius-sm);">
+                    <img src="{{ b.image.url }}" style="height: 56px; max-width: 60%; border-radius: 6px; object-fit: cover;">
+                    <form method="post" action="{% url 'dashboard:banner_delete' b.id %}" onsubmit="return confirm('¿Eliminar este banner?');">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-dashboard-danger">Eliminar</button>
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div style="padding: 2rem; background: #f8fafc; border: 2px dashed var(--border-color); border-radius: var(--border-radius-sm); text-align: center; color: var(--text-muted);">
+                No hay banners agregados.
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+@media (max-width: 768px) { .banner-grid { grid-template-columns: 1fr; } }
+</style>
+{% endblock %}

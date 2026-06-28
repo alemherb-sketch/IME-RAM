@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }} - GRUPO COINP{% endblock %}
+
+{% block content %}
+<section class="section">
+
+    <div class="breadcrumb reveal">
+        <a href="{% url 'store:index' %}">Inicio</a>
+        <span class="breadcrumb-sep">›</span>
+        <a href="{% url 'store:product_list' %}">Productos</a>
+        <span class="breadcrumb-sep">›</span>
+        <span>{{ product.name }}</span>
+    </div>
+
+    <div class="product-detail-wrap reveal">
+        <!-- Imagen -->
+        <div class="product-image-box">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% else %}
+                <div style="display:flex; flex-direction:column; align-items:center; gap:1rem; color:var(--text-light);">
+                    <span style="font-size:5rem;">⚡</span>
+                    <span style="font-size:0.9rem;">Imagen no disponible</span>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Info -->
+        <div class="product-info">
+            <span class="product-category-tag">{{ product.category.name }}</span>
+            <h1 class="product-name">{{ product.name }}</h1>
+            <p class="product-desc">{{ product.description }}</p>
+
+            <div class="product-price-block">
+                <span class="product-currency">S/</span>
+                <span class="product-price">{{ product.price }}</span>
+            </div>
+
+            {% if product.stock > 0 %}
+                <span class="product-stock in-stock">✓ En stock — {{ product.stock }} disponibles</span>
+            {% else %}
+                <span class="product-stock out-stock">✗ Producto agotado</span>
+            {% endif %}
+
+            {% if product.stock > 0 %}
+            <form action="{% url 'orders:cart_add' product.id %}" method="post" class="quantity-form">
+                {% csrf_token %}
+                <div class="qty-wrapper" style="display:flex; align-items:center; gap:0.4rem;">
+                    <button type="button" class="qty-minus btn btn-secondary btn-sm" style="padding:0.55rem 0.9rem; border-radius:var(--border-radius-sm);">−</button>
+                    <input type="number" name="quantity" value="1" min="1" max="{{ product.stock }}" class="qty-input">
+                    <button type="button" class="qty-plus btn btn-secondary btn-sm" style="padding:0.55rem 0.9rem; border-radius:var(--border-radius-sm);">+</button>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg" style="flex:1; min-width:180px;">🛒 Añadir al Carrito</button>
+            </form>
+            {% endif %}
+
+            <div style="display:flex; gap:0.75rem; margin-top:0.5rem; flex-wrap:wrap;">
+                <a href="{% url 'store:product_list' %}" class="btn btn-secondary btn-sm">← Volver al Catálogo</a>
+            </div>
+        </div>
+    </div>
+
+</section>
+{% endblock %}

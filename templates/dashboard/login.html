@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#1b539a">
+    <title>Acceso Admin - GRUPO COINP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: 'Outfit', sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 1.5rem; background: linear-gradient(135deg, #1b539a 0%, #103463 100%); }
+        .login-box { background: white; padding: 2.5rem; border-radius: 14px; box-shadow: 0 10px 40px rgba(0,0,0,0.25); width: 100%; max-width: 400px; text-align: center; }
+        .logo { font-weight: 800; font-size: 2rem; color: #1b539a; margin-bottom: 0.5rem; }
+        .logo span { color: #c1272d; }
+        .form-group { margin-bottom: 1.25rem; text-align: left; }
+        .form-group label { display: block; margin-bottom: 0.5rem; color: #475569; font-weight: 600; }
+        .form-group input { width: 100%; padding: 0.85rem 1rem; border: 2px solid #e2e8f0; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 16px; transition: border-color 0.2s; }
+        .form-group input:focus { outline: none; border-color: #1b539a; box-shadow: 0 0 0 3px rgba(27,83,154,0.1); }
+        .btn { width: 100%; padding: 1rem; background: linear-gradient(135deg, #e03038, #9a1e23); color: white; border: none; border-radius: 50px; font-weight: 700; cursor: pointer; font-size: 1.05rem; box-shadow: 0 8px 25px rgba(193,39,45,0.3); transition: transform 0.2s; }
+        .btn:hover { transform: translateY(-2px); }
+        .msg-error { background: #fee2e2; color: #991b1b; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <div class="logo">GRUPO <span>COINP</span></div>
+        <p style="color: #64748b; margin-bottom: 2rem;">Panel de Administración</p>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div class="msg-error">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Usuario</label>
+                <input type="text" name="username" required>
+            </div>
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" name="password" required>
+            </div>
+            <button type="submit" class="btn">Ingresar al Panel</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block page_title %}{% if product %}Editar Producto{% else %}Nuevo Producto{% endif %}{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap;">
+    <h1 style="color: var(--text-dark); margin: 0; font-size: 1.5rem;">{% if product %}Editar Producto{% else %}Nuevo Producto{% endif %}</h1>
+    <a href="{% url 'dashboard:product_list' %}" class="btn btn-sm" style="background: #f1f5f9; color: #475569;">← Volver al Inventario</a>
+</div>
+
+<div class="form-card" style="max-width: 640px;">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label>Categoría</label>
+            <select name="category" class="form-control" required>
+                {% for category in categories %}
+                <option value="{{ category.id }}" {% if product and product.category.id == category.id %}selected{% endif %}>{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Nombre del Producto</label>
+            <input type="text" name="name" value="{{ product.name|default:'' }}" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label>Descripción</label>
+            <textarea name="description" rows="4" class="form-control" required>{{ product.description|default:'' }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Imagen del Producto</label>
+            {% if product and product.image %}
+                <div style="margin-bottom: 0.5rem;">
+                    <img src="{{ product.image.url }}" alt="Imagen actual" style="width: 100px; border-radius: 6px; border: 1px solid var(--border-color);">
+                </div>
+                <small style="color: var(--text-muted);">Sube una nueva imagen solo si deseas reemplazar la actual.</small>
+            {% endif %}
+            <input type="file" name="image" accept="image/*" class="form-control">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Precio (S/)</label>
+                <input type="number" step="0.01" name="price" value="{{ product.price|default:'' }}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Stock (Cantidad)</label>
+                <input type="number" name="stock" value="{{ product.stock|default:'0' }}" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                <input type="checkbox" name="available" {% if not product or product.available %}checked{% endif %} style="width: 20px; height: 20px;">
+                Producto Activo / Visible en la tienda
+            </label>
+        </div>
+
+        <button type="submit" class="btn btn-dashboard-primary btn-lg" style="margin-top: 0.5rem; width: 100%;">Guardar Producto</button>
+    </form>
+</div>
+{% endblock %}

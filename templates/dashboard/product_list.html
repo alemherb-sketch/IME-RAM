@@ -1,0 +1,64 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block page_title %}Inventario{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap;">
+    <h1 style="color: var(--text-dark); margin: 0; font-size: 1.5rem;">Gestión de Inventario</h1>
+    <a href="{% url 'dashboard:product_create' %}" class="btn btn-dashboard-primary">+ Añadir Producto</a>
+</div>
+
+<div class="table-scroll">
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Categoría</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
+                    {% else %}
+                        <div style="width: 40px; height: 40px; background: #e2e8f0; border-radius: 4px; display: flex; align-items: center; justify-content: center;">🔌</div>
+                    {% endif %}
+                    <strong>{{ product.name }}</strong>
+                </div>
+            </td>
+            <td>{{ product.category.name }}</td>
+            <td>S/ {{ product.price }}</td>
+            <td>
+                {% if product.stock < 5 %}
+                    <span style="color: var(--primary-red); font-weight: bold;">{{ product.stock }} (Bajo)</span>
+                {% else %}
+                    <span>{{ product.stock }}</span>
+                {% endif %}
+            </td>
+            <td>
+                {% if product.available %}
+                    <span class="badge badge-success">Activo</span>
+                {% else %}
+                    <span class="badge badge-danger">Inactivo</span>
+                {% endif %}
+            </td>
+            <td>
+                <a href="{% url 'dashboard:product_edit' product.id %}" class="btn btn-sm" style="background: #f1f5f9; color: #475569;">Editar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6" style="text-align: center; color: var(--text-muted);">No hay productos en el inventario.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}

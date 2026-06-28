@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Catálogo de Productos - GRUPO COINP{% endblock %}
+
+{% block content %}
+<section class="section">
+
+    <div class="breadcrumb">
+        <a href="{% url 'store:index' %}">Inicio</a>
+        <span class="breadcrumb-sep">›</span>
+        <span>Productos</span>
+    </div>
+
+    <div class="section-header reveal">
+        <h2 class="section-title">Catálogo de Productos</h2>
+        <p class="section-subtitle">Materiales eléctricos de calidad para cada proyecto.</p>
+    </div>
+
+    <!-- Category Chips -->
+    <div class="category-filter reveal">
+        <span class="chip active" data-category="all">🔌 Todos</span>
+        {% for c in categories %}
+        <span class="chip" data-category="{{ c.slug }}">{{ c.name }}</span>
+        {% endfor %}
+    </div>
+
+    <div class="grid-container reveal-stagger">
+        {% for product in products %}
+        <div class="card product-card-item" data-category="{{ product.category.slug }}">
+            <div class="card-img-wrap">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                {% else %}
+                    <div class="card-img-placeholder">⚡</div>
+                {% endif %}
+            </div>
+            <div class="card-content">
+                <span class="card-category">{{ product.category.name }}</span>
+                <h3 class="card-title">{{ product.name }}</h3>
+                <p class="card-desc">{{ product.description|truncatewords:15 }}</p>
+                <div class="card-footer">
+                    <div class="card-price"><small>S/</small> {{ product.price }}</div>
+                    <a href="{% url 'store:product_detail' product.slug %}" class="btn btn-primary btn-sm">Ver Detalle</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="empty-state" style="grid-column: 1/-1;">
+            <div class="empty-icon">📦</div>
+            <div class="empty-title">Sin productos disponibles</div>
+            <div class="empty-desc">No hay productos en el catálogo por el momento.</div>
+            <a href="{% url 'store:index' %}" class="btn btn-primary">Volver al Inicio</a>
+        </div>
+        {% endfor %}
+    </div>
+
+</section>
+{% endblock %}

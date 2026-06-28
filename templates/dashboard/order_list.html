@@ -1,0 +1,58 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block page_title %}Pedidos{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+    <h1 style="color: var(--text-dark); margin: 0; font-size: 1.5rem;">Gestión de Pedidos</h1>
+</div>
+
+<div class="table-scroll">
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>ID Pedido</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Total Pagado</th>
+            <th>Estado de Entrega</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td><strong>#{{ order.id }}</strong></td>
+            <td>{{ order.first_name }} {{ order.last_name }}</td>
+            <td>{{ order.created|date:"d/m/Y H:i" }}</td>
+            <td>S/ {{ order.get_total_cost }}</td>
+            <td>
+                <form method="post" action="{% url 'dashboard:order_status_update' order.id %}" style="display: flex; gap: 0.5rem; align-items: center;">
+                    {% csrf_token %}
+                    <select name="status" class="form-control" style="padding: 0.5rem; width: auto; min-width: 150px;">
+                        <option value="pendiente" {% if order.status == 'pendiente' %}selected{% endif %}>Pendiente</option>
+                        <option value="preparacion" {% if order.status == 'preparacion' %}selected{% endif %}>En Preparación</option>
+                        <option value="camino" {% if order.status == 'camino' %}selected{% endif %}>En Camino</option>
+                        <option value="entregado" {% if order.status == 'entregado' %}selected{% endif %}>Entregado</option>
+                        <option value="cancelado" {% if order.status == 'cancelado' %}selected{% endif %}>Cancelado</option>
+                    </select>
+                    <button type="submit" class="btn btn-sm btn-dashboard-primary">Guardar</button>
+                </form>
+            </td>
+            <td>
+                {% if order.paid %}
+                    <span class="badge badge-success">Pagado</span>
+                {% else %}
+                    <span class="badge badge-danger">No Pagado</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6" style="text-align: center; color: var(--text-muted);">No hay pedidos registrados.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}
