@@ -16,9 +16,8 @@
 
     <header id="main-header">
         <nav>
-            <a href="{% url 'store:index' %}" class="logo-text">
-                <div class="logo-icon">⚡</div>
-                IME <span>RAM</span>
+            <a href="{% url 'store:index' %}" class="logo-text" style="text-decoration:none; display:flex; align-items:center;">
+                <img src="{% static 'img/logo.png' %}" alt="IME RAM Logo" class="brand-logo-img">
             </a>
 
             <button class="nav-toggle" aria-label="Menú" aria-expanded="false">
@@ -47,9 +46,8 @@
     <footer>
         <div class="footer-top">
             <div class="footer-brand">
-                <a href="{% url 'store:index' %}" class="logo-text">
-                    <div class="logo-icon">⚡</div>
-                    IME <span>RAM</span>
+                <a href="{% url 'store:index' %}" class="logo-text" style="text-decoration:none; display:flex; align-items:center;">
+                    <img src="{% static 'img/logo.png' %}" alt="IME RAM Logo" class="brand-logo-img">
                 </a>
                 <p>Especialistas en materiales eléctricos y servicios de mantenimiento electromecánico. Calidad garantizada para tu proyecto.</p>
             </div>

@@ -1702,3 +1702,10 @@ footer {
     .breadcrumb { font-size: 0.78rem; }
     .btn { padding: 0.7rem 1.3rem; }
 }
+
+/* Custom Logo Styles */
+.brand-logo-img { max-height: 45px; width: auto; object-fit: contain; vertical-align: middle; transition: transform 0.2s ease; }
+.brand-logo-img:hover { transform: scale(1.05); }
+.footer-brand .brand-logo-img { max-height: 60px; margin-bottom: 15px; }
+.sidebar-header .brand-logo-img { max-height: 40px; margin-right: 10px; }
+.login-box .brand-logo-img { max-height: 80px; margin-bottom: 1rem; }
