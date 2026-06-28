@@ -3,7 +3,7 @@
   "model": "store.category",
   "pk": 1,
   "fields": {
-    "name": "Cables ElÈctricos",
+    "name": "Cables El√©ctricos",
     "slug": "cables-electricos",
     "description": "Cables para instalaciones domiciliarias e industriales."
   }
@@ -12,7 +12,7 @@
   "model": "store.category",
   "pk": 2,
   "fields": {
-    "name": "IluminaciÛn",
+    "name": "Iluminaci√≥n",
     "slug": "iluminacion",
     "description": "Focos, luminarias y reflectores LED."
   }
@@ -32,7 +32,7 @@
   "fields": {
     "name": "Tableros y Llaves",
     "slug": "tableros-llaves",
-    "description": "Tableros elÈctricos y llaves termomagnÈticas."
+    "description": "Tableros el√©ctricos y llaves termomagn√©ticas."
   }
 },
 {
@@ -41,7 +41,7 @@
   "fields": {
     "name": "Tubos y Canaletas",
     "slug": "tubos-canaletas",
-    "description": "TuberÌas PVC y canaletas para cableado."
+    "description": "Tuber√≠as PVC y canaletas para cableado."
   }
 },
 {
@@ -51,7 +51,7 @@
     "category": 1,
     "name": "Cable THW 14 AWG x 100m - Indeco",
     "slug": "cable-thw-14-awg-100m-indeco",
-    "description": "Rollo de cable rÌgido THW calibre 14 AWG de marca Indeco (Per˙). Ideal para instalaciones elÈctricas fijas interiores.",
+    "description": "Rollo de cable r√≠gido THW calibre 14 AWG de marca Indeco (Per√∫). Ideal para instalaciones el√©ctricas fijas interiores.",
     "price": "145.50",
     "stock": 50,
     "available": true,
@@ -67,7 +67,7 @@
     "category": 1,
     "name": "Cable Mellizo 2x16 AWG x 100m - Indeco",
     "slug": "cable-mellizo-2x16-awg-100m-indeco",
-    "description": "Cable flexible mellizo ideal para extensiones cortas y aparatos port·tiles livianos.",
+    "description": "Cable flexible mellizo ideal para extensiones cortas y aparatos port√°tiles livianos.",
     "price": "85.00",
     "stock": 30,
     "available": true,
@@ -83,7 +83,7 @@
     "category": 2,
     "name": "Foco LED 12W Luz Blanca - Philips",
     "slug": "foco-led-12w-luz-blanca-philips",
-    "description": "Foco LED E27 de 12W (equivale a 100W incandescente) luz frÌa para alta iluminaciÛn.",
+    "description": "Foco LED E27 de 12W (equivale a 100W incandescente) luz fr√≠a para alta iluminaci√≥n.",
     "price": "12.00",
     "stock": 100,
     "available": true,
@@ -99,7 +99,7 @@
     "category": 2,
     "name": "Reflector LED 50W Exterior - Opalux",
     "slug": "reflector-led-50w-exterior-opalux",
-    "description": "Reflector LED de alta potencia para exteriores, protecciÛn IP65.",
+    "description": "Reflector LED de alta potencia para exteriores, protecci√≥n IP65.",
     "price": "45.00",
     "stock": 20,
     "available": true,
@@ -115,7 +115,7 @@
     "category": 3,
     "name": "Interruptor Simple Modus Style - Bticino",
     "slug": "interruptor-simple-modus-style-bticino",
-    "description": "Placa armada de 1 interruptor simple de la lÌnea Modus Style, color blanco.",
+    "description": "Placa armada de 1 interruptor simple de la l√≠nea Modus Style, color blanco.",
     "price": "14.50",
     "stock": 60,
     "available": true,
@@ -131,7 +131,7 @@
     "category": 3,
     "name": "Tomacorriente Doble Universal - Bticino",
     "slug": "tomacorriente-doble-universal-bticino",
-    "description": "Tomacorriente doble universal con toma a tierra, lÌnea Modus Plus.",
+    "description": "Tomacorriente doble universal con toma a tierra, l√≠nea Modus Plus.",
     "price": "18.00",
     "stock": 75,
     "available": true,
@@ -145,9 +145,9 @@
   "pk": 7,
   "fields": {
     "category": 4,
-    "name": "Llave TermomagnÈtica 2x20A - ABB",
+    "name": "Llave Termomagn√©tica 2x20A - ABB",
     "slug": "llave-termomagnetica-2x20a-abb",
-    "description": "Interruptor termomagnÈtico bipolar de 20 amperios, riel DIN.",
+    "description": "Interruptor termomagn√©tico bipolar de 20 amperios, riel DIN.",
     "price": "25.00",
     "stock": 40,
     "available": true,
@@ -163,7 +163,7 @@
     "category": 4,
     "name": "Interruptor Diferencial 2x40A - Schneider",
     "slug": "interruptor-diferencial-2x40a-schneider",
-    "description": "Salvavidas diferencial de 30mA para protecciÛn contra descargas elÈctricas.",
+    "description": "Salvavidas diferencial de 30mA para protecci√≥n contra descargas el√©ctricas.",
     "price": "110.00",
     "stock": 15,
     "available": true,
@@ -177,9 +177,9 @@
   "pk": 9,
   "fields": {
     "category": 4,
-    "name": "Tablero ElÈctrico de Empotrar 12 Polos - Ticino",
+    "name": "Tablero El√©ctrico de Empotrar 12 Polos - Ticino",
     "slug": "tablero-electrico-empotrar-12-polos-ticino",
-    "description": "Tablero de distribuciÛn para empotrar, capacidad de 12 polos, tapa transparente.",
+    "description": "Tablero de distribuci√≥n para empotrar, capacidad de 12 polos, tapa transparente.",
     "price": "55.00",
     "stock": 10,
     "available": true,
@@ -195,7 +195,7 @@
     "category": 5,
     "name": "Tubo PVC SEL 3/4\" x 3m - Pavco",
     "slug": "tubo-pvc-sel-3-4-x-3m-pavco",
-    "description": "Tubo PVC elÈctrico clase SEL de 3/4 de pulgada de di·metro y 3 metros de largo.",
+    "description": "Tubo PVC el√©ctrico clase SEL de 3/4 de pulgada de di√°metro y 3 metros de largo.",
     "price": "4.50",
     "stock": 200,
     "available": true,
@@ -208,8 +208,8 @@
   "model": "store.service",
   "pk": 1,
   "fields": {
-    "name": "Mantenimiento de Tableros ElÈctricos",
-    "description": "RevisiÛn, limpieza y ajuste de conexiones en tableros elÈctricos industriales y comerciales para prevenir cortocircuitos y fallas energÈticas.",
+    "name": "Mantenimiento de Tableros El√©ctricos",
+    "description": "Revisi√≥n, limpieza y ajuste de conexiones en tableros el√©ctricos industriales y comerciales para prevenir cortocircuitos y fallas energ√©ticas.",
     "base_price": "150.00",
     "image": "services/service_tableros_electricos_1782665922145.png",
     "active": true
@@ -219,8 +219,8 @@
   "model": "store.service",
   "pk": 2,
   "fields": {
-    "name": "InstalaciÛn de Puestas a Tierra (Pozo a Tierra)",
-    "description": "ConstrucciÛn, mediciÛn y certificaciÛn de sistemas de puesta a tierra, garantizando la seguridad de equipos electrÛnicos y del personal.",
+    "name": "Instalaci√≥n de Puestas a Tierra (Pozo a Tierra)",
+    "description": "Construcci√≥n, medici√≥n y certificaci√≥n de sistemas de puesta a tierra, garantizando la seguridad de equipos electr√≥nicos y del personal.",
     "base_price": "450.00",
     "image": "services/service_pozo_tierra_1782665932062.png",
     "active": true
@@ -230,8 +230,8 @@
   "model": "store.service",
   "pk": 3,
   "fields": {
-    "name": "DiseÒo e InstalaciÛn de IluminaciÛn LED",
-    "description": "Estudio de eficiencia energÈtica e instalaciÛn de luminarias LED de alta potencia para almacenes, oficinas y exteriores.",
+    "name": "Dise√±o e Instalaci√≥n de Iluminaci√≥n LED",
+    "description": "Estudio de eficiencia energ√©tica e instalaci√≥n de luminarias LED de alta potencia para almacenes, oficinas y exteriores.",
     "base_price": "200.00",
     "image": "services/service_iluminacion_led_1782665943612.png",
     "active": true
