@@ -6,18 +6,19 @@
 <style>
     /* Carousel */
     .carousel { position: relative; width: 100%; overflow: hidden; }
-    .carousel-inner { width: 100%; position: relative; }
+    /* Height follows the ACTIVE slide (set via JS) so every banner shows fully,
+       regardless of its aspect ratio, instead of being clipped to the first one. */
+    .carousel-inner { width: 100%; position: relative; transition: height 0.45s ease; }
 
-    /* Banner mode: items stack via absolute, first is the height reference */
+    /* All slides stacked absolutely; cross-fade by opacity */
     .carousel-item {
         position: absolute; top: 0; left: 0; width: 100%;
         opacity: 0; transition: opacity 0.9s ease-in-out; z-index: 0;
     }
-    .carousel-item:first-child { position: relative; }
     .carousel-item.active { opacity: 1; z-index: 1; }
 
-    /* Banner image fills the slide, no overlay */
-    .carousel-banner-img { width: 100%; height: auto; display: block; max-height: 75vh; object-fit: cover; }
+    /* Banner image fills the slide width and keeps its natural aspect (no crop) */
+    .carousel-banner-img { width: 100%; height: auto; display: block; }
 
     /* Hero mode (no banners): gradient slide with text */
     .carousel-hero {
@@ -145,7 +146,18 @@
     let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-item');
     const dots = document.querySelectorAll('.dot');
+    const carInner = document.querySelector('.carousel-inner');
     let slideInterval;
+
+    // Match the carousel height to the active slide so banners of any aspect
+    // ratio render fully (avoids the taller banners being clipped on mobile).
+    function syncCarouselHeight() {
+        if (!carInner || !slides.length) return;
+        const active = slides[currentSlide];
+        const content = active.querySelector('img, .carousel-hero') || active;
+        const h = content.offsetHeight;
+        if (h) carInner.style.height = h + 'px';
+    }
 
     function showSlide(index) {
         if (!slides.length) return;
@@ -154,6 +166,7 @@
         slides[index].classList.add('active');
         if (dots[index]) dots[index].classList.add('active');
         currentSlide = index;
+        syncCarouselHeight();
     }
 
     function nextSlide() {
@@ -173,6 +186,12 @@
     }
 
     if (slides.length > 1) slideInterval = setInterval(nextSlide, 5500);
+
+    // Keep height correct after images load and on viewport changes
+    slides.forEach(s => { const img = s.querySelector('img'); if (img) img.addEventListener('load', syncCarouselHeight); });
+    window.addEventListener('load', syncCarouselHeight);
+    window.addEventListener('resize', syncCarouselHeight);
+    syncCarouselHeight();
 </script>
 
 
