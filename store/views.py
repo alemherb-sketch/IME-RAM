@@ -4,7 +4,7 @@ from .models import Category, Product, Service, Banner
 def index(request):
     featured_products = Product.objects.filter(available=True)[:6]
     services = Service.objects.filter(active=True)[:3]
-    banners = Banner.objects.filter(active=True)
+    banners = Banner.objects.filter(active=True).exclude(image='')
     return render(request, 'store/index.html', {
         'featured_products': featured_products,
         'services': services,
