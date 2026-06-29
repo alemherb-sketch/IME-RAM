@@ -138,5 +138,9 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_URL = '/static/media/'
-MEDIA_ROOT = BASE_DIR / 'static' / 'media'
+# Media is served from /media/ (decoupled from /static/ so it can live on a
+# persistent disk and so runserver can serve it in dev).
+MEDIA_URL = '/media/'
+# In production MEDIA_ROOT is a Render persistent disk (set via env var) so user
+# uploads survive deploys/restarts. Locally it defaults to the committed seed dir.
+MEDIA_ROOT = os.environ.get('MEDIA_ROOT', BASE_DIR / 'static' / 'media')

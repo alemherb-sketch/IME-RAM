@@ -7,10 +7,16 @@ databases:
 services:
   - type: web
     name: ime-ram-web
-    plan: free
+    plan: starter
     env: python
     buildCommand: "./build.sh"
-    startCommand: "gunicorn backend.wsgi:application"
+    # seed_media copies committed seed images onto the persistent disk (idempotent)
+    # before the app starts; user uploads on the disk are preserved.
+    startCommand: "python manage.py seed_media && gunicorn backend.wsgi:application"
+    disk:
+      name: media
+      mountPath: /var/data/media
+      sizeGB: 1
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -20,3 +26,6 @@ services:
         generateValue: true
       - key: WEB_CONCURRENCY
         value: 4
+      # Persistent disk mount -> user-uploaded media survives deploys/restarts
+      - key: MEDIA_ROOT
+        value: /var/data/media
