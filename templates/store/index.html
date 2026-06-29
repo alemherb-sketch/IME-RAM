@@ -98,7 +98,9 @@
         .product-carousel-wrapper { padding: 0; }
         .prod-carousel-btn { display: none; }
         .carousel-arrow { display: none; }
-        .product-slide { flex: 0 0 260px; }
+        /* Featured products: 2-column grid on mobile instead of horizontal carousel */
+        .product-carousel { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; overflow: visible; }
+        .product-slide { flex: none; width: auto; }
     }
 </style>
 {% endblock %}
@@ -296,7 +298,7 @@
         }
     }
 
-    if (prodCarousel && prodCarousel.querySelectorAll('.product-slide').length > 1) {
+    if (prodCarousel && prodCarousel.scrollWidth > prodCarousel.clientWidth + 5 && prodCarousel.querySelectorAll('.product-slide').length > 1) {
         prodInterval = setInterval(autoScrollProd, 4500);
         prodCarousel.parentElement.addEventListener('mouseenter', () => clearInterval(prodInterval));
         prodCarousel.parentElement.addEventListener('mouseleave', () => {

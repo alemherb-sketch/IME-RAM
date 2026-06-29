@@ -1601,6 +1601,9 @@ footer {
     .hero h1 { font-size: 1.9rem; }
     .carousel-hero { min-height: 420px; }
 
+    /* Product / service card grids: 2 columns on mobile */
+    .grid-container { grid-template-columns: 1fr 1fr; gap: 1rem; }
+
     .benefits-bar { box-shadow: none; }
     .benefits-inner { grid-template-columns: 1fr 1fr; }
     .benefit-item {
@@ -1683,12 +1686,9 @@ footer {
 
 @media (max-width: 480px) {
     .section { padding: 2.5rem 5%; }
-    .benefits-inner { grid-template-columns: 1fr; }
-    .benefit-item, .benefit-item:nth-child(odd) {
-        border-right: none;
-        flex-direction: row;
-        text-align: left;
-    }
+    /* Keep benefits at 2 columns even on small phones */
+    .benefits-inner { grid-template-columns: 1fr 1fr; }
+    .benefit-item { padding: 1.1rem 0.75rem; }
     .form-row { grid-template-columns: 1fr; }
     .stat-cards { grid-template-columns: 1fr; }
     .stats-inner { gap: 1.5rem; }
@@ -1698,9 +1698,17 @@ footer {
     .carousel-content { padding: 1.2rem; }
     .carousel-content > div { flex-direction: column; }
     .carousel-content .btn { width: 100%; }
-    .product-slide { flex: 0 0 85vw !important; }
     .breadcrumb { font-size: 0.78rem; }
     .btn { padding: 0.7rem 1.3rem; }
+
+    /* Compact product cards so 2 columns fit comfortably on phones */
+    .card-img-wrap img, .card-img-placeholder { height: 150px; }
+    .card-content { padding: 1rem 1rem 1.1rem; gap: 0.35rem; }
+    .card-title { font-size: 1rem; line-height: 1.3; }
+    .card-desc { font-size: 0.8rem; }
+    .card-price { font-size: 1.2rem; }
+    .card-footer { flex-direction: column; align-items: stretch; gap: 0.55rem; margin-top: 0.6rem; padding-top: 0.8rem; }
+    .card-footer .btn { width: 100%; }
 }
 
 /* Custom Logo Styles */
